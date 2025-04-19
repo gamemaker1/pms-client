@@ -20,5 +20,8 @@ void loop() {
   if (MODE == "entry") handleEntry();
   if (MODE == "exit") handleExit();
 
-  handleParking(); delay(1000);
+  handleLighting();
+  handleParking();
+
+  delay(1000);
 }

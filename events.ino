@@ -1,4 +1,5 @@
 #define ENTRY_IR_SENSOR 34
+#define LED_LIGHT_PIN   23
 
 #define CAR_ENTRY_THRESHOLD 150
 #define PARK_TIME_THRESHOLD 3000
@@ -42,6 +43,22 @@ JsonDocument postRequest(String endpoint, String request) {
   http.end();
   deserializeJson(doc, payload);
   return doc;
+}
+
+void handleLighting() {
+  bool empty = true;
+  for (auto slot : slots) {
+    if (slot.parked || slot.detected > 0) {
+      Serial.print("[lights] activity in ");
+      Serial.println(slot.location);
+      empty = false; break;
+    }
+  }
+
+  Serial.print("[lights] turning lights to ");
+  Serial.println(!empty);
+
+  digitalWrite(LED_LIGHT_PIN, !empty);
 }
 
 bool handlingEntry = false;

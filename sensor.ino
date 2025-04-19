@@ -1,5 +1,6 @@
 #define SERVO_MOTOR_PIN 13
 #define ENTRY_IR_SENSOR 34
+#define LED_LIGHT_PIN   23
 
 #define SPEED_OF_SOUND 0.0343
 #define SENSOR_TIMEOUT 20000
@@ -11,7 +12,8 @@ LiquidCrystal_I2C lcd(0x27, 16, 2); // sda - 21, scl - 22
 void setupPins() {
   motor.attach(SERVO_MOTOR_PIN);
   pinMode(ENTRY_IR_SENSOR, INPUT);
-  
+  pinMode(LED_LIGHT_PIN, OUTPUT);
+
   for (auto slot : slots) {
     pinMode(slot.trig, OUTPUT);
     pinMode(slot.echo, INPUT);
