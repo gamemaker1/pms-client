@@ -55,9 +55,6 @@ void handleLighting() {
     }
   }
 
-  Serial.print("[lights] turning lights to ");
-  Serial.println(!empty);
-
   digitalWrite(LED_LIGHT_PIN, !empty);
 }
 
