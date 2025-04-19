@@ -30,14 +30,16 @@ void setupPins() {
 }
 
 void openGate() {
+  int start = motor.read();
   for (int pos = 0; pos <= 90; pos++) {
-    motor.write(pos); delay(10);
+    motor.write(start + pos); delay(10);
   }
 }
 
 void closeGate() {
+  int start = motor.read() - 90;
   for (int pos = 90; pos >= 0; pos--) {
-    motor.write(pos); delay(10);
+    motor.write(start + pos); delay(10);
   }
 }
 
