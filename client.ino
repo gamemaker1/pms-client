@@ -6,7 +6,7 @@
 #include <LiquidCrystal_I2C.h>
 
 // entry, exit, slots
-#define MODE "exit"
+#define MODE "entry"
 
 void setup() {
   Serial.begin(9600);

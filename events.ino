@@ -57,7 +57,7 @@ void handleEntry() {
     JsonDocument payload = postRequest("/sessions", "{\"vehicle\": \"lmv\"}");
     String otp = payload["data"]["symbol"];
 
-    Serial.print("[entry] got otp:");
+    Serial.print("[entry] got otp: ");
     Serial.println(otp); writeOtp(otp);
 
     handlingEntry = true; return;

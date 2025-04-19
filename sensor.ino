@@ -29,13 +29,13 @@ void setupPins() {
   }
 }
 
-void closeGate() {
+void openGate() {
   for (int pos = 0; pos <= 90; pos++) {
     motor.write(pos); delay(10);
   }
 }
 
-void openGate() {
+void closeGate() {
   for (int pos = 90; pos >= 0; pos--) {
     motor.write(pos); delay(10);
   }
