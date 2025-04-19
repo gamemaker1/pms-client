@@ -5,8 +5,8 @@
 #define SENSOR_TIMEOUT 20000
 #define VALUE_INFINITY 1000000000
 
-Servo motor;
-LiquidCrystal_I2C lcd(0x27,16,2);
+Servo motor; // motor requires requires pins 12/13
+LiquidCrystal_I2C lcd(0x27, 16, 2); // sda - 21, scl - 22
 
 void setupPins() {
 	motor.attach(SERVO_MOTOR_PIN);
