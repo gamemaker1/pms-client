@@ -5,14 +5,19 @@
 #include <ArduinoJson.h>
 #include <LiquidCrystal_I2C.h>
 
+// entry, exit, slots
+#define MODE "exit"
+
 void setup() {
-	Serial.begin(9600);
-	setupPins();
-	connectToWiFi();
+  Serial.begin(9600);
+
+  setupPins(); connectToWiFi();
+  if (MODE == "exit") setupServer();
 }
 
 void loop() {
-	handleEntry();
-	handleParking();
-	delay(1000);
+  if (MODE == "entry") handleEntry();
+  if (MODE == "exit") handleExit();
+
+  handleParking(); delay(1000);
 }

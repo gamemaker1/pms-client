@@ -9,39 +9,36 @@ Servo motor; // motor requires requires pins 12/13
 LiquidCrystal_I2C lcd(0x27, 16, 2); // sda - 21, scl - 22
 
 void setupPins() {
-	motor.attach(SERVO_MOTOR_PIN);
-	pinMode(ENTRY_IR_SENSOR, INPUT);
-	
-	for (auto slot : slots) {
-		pinMode(slot.trig, OUTPUT);
-		pinMode(slot.echo, INPUT);
-		pinMode(slot.gled, OUTPUT);
-		pinMode(slot.rled, OUTPUT);
+  motor.attach(SERVO_MOTOR_PIN);
+  pinMode(ENTRY_IR_SENSOR, INPUT);
+  
+  for (auto slot : slots) {
+    pinMode(slot.trig, OUTPUT);
+    pinMode(slot.echo, INPUT);
+    pinMode(slot.gled, OUTPUT);
+    pinMode(slot.rled, OUTPUT);
 
-		digitalWrite(slot.gled, HIGH);
-		digitalWrite(slot.rled, LOW);
-	}
+    digitalWrite(slot.gled, HIGH);
+    digitalWrite(slot.rled, LOW);
+  }
 
-  lcd.init();
-  lcd.clear();
-  lcd.backlight();
-
-  lcd.setCursor(0, 0);
-  lcd.print("Smart Parking");
-  lcd.setCursor(0, 1);
-  lcd.print("OTP: ");
+  if (MODE == "entry") {
+    lcd.init(); lcd.clear(); lcd.backlight();
+    lcd.setCursor(0, 0); lcd.print("Smart Parking");
+    lcd.setCursor(0, 1); lcd.print("OTP: ");
+  }
 }
 
 void closeGate() {
-	for (int pos = 0; pos <= 90; pos++) {
-		motor.write(pos); delay(10);
-	}
+  for (int pos = 0; pos <= 90; pos++) {
+    motor.write(pos); delay(10);
+  }
 }
 
 void openGate() {
-	for (int pos = 90; pos >= 0; pos--) {
-		motor.write(pos); delay(10);
-	}
+  for (int pos = 90; pos >= 0; pos--) {
+    motor.write(pos); delay(10);
+  }
 }
 
 int getDistance(int trig, int echo) {
@@ -55,10 +52,10 @@ int getDistance(int trig, int echo) {
 }
 
 void blinkLed(int pin, int count) {
-	for (int i = 0; i < count; i++) {
-		digitalWrite(pin, HIGH); delay(100);
-		digitalWrite(pin, LOW); delay(100);
-	}
+  for (int i = 0; i < count; i++) {
+    digitalWrite(pin, HIGH); delay(100);
+    digitalWrite(pin, LOW); delay(100);
+  }
 }
 
 void writeOtp(String otp) {
