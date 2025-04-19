@@ -6,6 +6,8 @@
 #define VALUE_INFINITY 1000000000
 
 Servo motor;
+LiquidCrystal_I2C lcd(0x27,16,2);
+
 void setupPins() {
 	motor.attach(SERVO_MOTOR_PIN);
 	pinMode(ENTRY_IR_SENSOR, INPUT);
@@ -19,15 +21,24 @@ void setupPins() {
 		digitalWrite(slot.gled, HIGH);
 		digitalWrite(slot.rled, LOW);
 	}
+
+  lcd.init();
+  lcd.clear();
+  lcd.backlight();
+
+  lcd.setCursor(0, 0);
+  lcd.print("Smart Parking");
+  lcd.setCursor(0, 1);
+  lcd.print("OTP: ");
 }
 
-void openGate() {
+void closeGate() {
 	for (int pos = 0; pos <= 90; pos++) {
 		motor.write(pos); delay(10);
 	}
 }
 
-void closeGate() {
+void openGate() {
 	for (int pos = 90; pos >= 0; pos--) {
 		motor.write(pos); delay(10);
 	}
@@ -48,4 +59,9 @@ void blinkLed(int pin, int count) {
 		digitalWrite(pin, HIGH); delay(100);
 		digitalWrite(pin, LOW); delay(100);
 	}
+}
+
+void writeOtp(String otp) {
+  lcd.setCursor(5, 1);
+  lcd.print(otp);
 }

@@ -8,7 +8,6 @@ typedef struct Slot {
 Slot slots[] = {
 	{ "A1", -1, false, 14, 27, 25, 26 },
 	{ "A2", -1, false, 33, 32, 2, 4 },
-	{ "B1", -1, false, 17, 18, 15, 16 },
 };
 int SLOT_COUNT = sizeof(slots) / sizeof(Slot);
 

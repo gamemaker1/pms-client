@@ -44,11 +44,11 @@ void handleEntry() {
 		Serial.println("[entry] detected car");
 
 		// TODO: handle bikes as well.
-		JsonDocument payload = postRequest("/session", "{\"vehicle\": \"lmv\"}");
+		JsonDocument payload = postRequest("/sessions", "{\"vehicle\": \"lmv\"}");
 		String otp = payload["data"]["symbol"];
 
 		Serial.print("[entry] got otp:");
-		Serial.println(otp);
+		Serial.println(otp); writeOtp(otp);
 
 		handlingEntry = true; return;
 	}
@@ -58,7 +58,9 @@ void handleEntry() {
 		openGate(); delay(5000);
 
 		Serial.println("[entry] closing gate for car");
-		closeGate(); handlingEntry = false;
+		closeGate(); writeOtp("          ");
+
+		handlingEntry = false; return;
 	}
 }
 
@@ -83,7 +85,7 @@ void handleParking() {
 				Serial.println(slot->location);
 
 				JsonDocument response = postRequest(
-				  "/slots/park", "{\"location\": \"" + slot->location + "\"}"
+				  "/slots/" + slot->location + "/park", "{}"
 				);
 
 				if (response["error"]) {
@@ -114,8 +116,9 @@ void handleParking() {
 
 				if (millis() - slot->detected >= PARK_TIME_THRESHOLD) {
 					Serial.print("[parking] leaving slot "); Serial.println(slot->location);
+
 					JsonDocument response = postRequest(
-					  "/slots/leave", "{\"location\": \"" + slot->location + "\"}"
+					  "/slots/" + slot->location + "/exit", "{}"
 					);
 
 					if (response["error"]) {
