@@ -54,7 +54,7 @@ void handleEntry() {
 
     // TODO: handle bikes as well.
     JsonDocument payload = postRequest("/sessions", "{\"vehicle\": \"lmv\"}");
-    String otp = payload["data"]["symbol"];
+    String otp = payload["data"]["symbol"]; if (otp == "null") return;
 
     Serial.print("[entry] got otp: ");
     Serial.println(otp); writeOtp(otp);

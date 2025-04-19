@@ -61,6 +61,6 @@ void blinkLed(int pin, int count) {
 }
 
 void writeOtp(String otp) {
-  lcd.setCursor(5, 1);
-  lcd.print(otp);
+  lcd.setCursor(5, 1); lcd.print("          ");
+  lcd.setCursor(5, 1); lcd.print(otp);
 }
