@@ -1,7 +1,6 @@
 #define ENTRY_IR_SENSOR 34
 
 #define CAR_ENTRY_THRESHOLD 150
-#define CAR_PARK_THRESHOLD  15
 #define PARK_TIME_THRESHOLD 3000
 
 void connectToWiFi() {
@@ -77,9 +76,10 @@ void handleEntry() {
 void handleParking() {
   for (int i = 0; i < SLOT_COUNT; i++) {
     Slot* slot = &slots[i]; int dist = getDistance(slot->trig, slot->echo);
-    // Serial.print("[parking] sensor reading: "); Serial.println(dist);
+    // Serial.print("[parking] sensor reading: "); Serial.print(slot->location);
+    // Serial.print(" - "); Serial.println(dist);
 
-    if (dist < CAR_PARK_THRESHOLD && !slot->parked) {
+    if (dist <= slot->threshold && !slot->parked) {
       if (slot->detected <= 0) {
         Serial.print("[parking] car park attempt for slot ");
         Serial.println(slot->location);
@@ -112,7 +112,7 @@ void handleParking() {
       }
     }
 
-    if (dist >= CAR_PARK_THRESHOLD) {
+    if (dist > slot->threshold) {
       if (slot->parked) {
         if (slot->detected <= 0) {
           Serial.print("[parking] car leave attempt for slot ");
