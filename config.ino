@@ -20,4 +20,5 @@ int SLOT_COUNT = sizeof(slots) / sizeof(Slot);
 String ssid = "Baarish";
 String password = "inthiseconomy?";
 String secret = "5cd224715682a288017719300dc93b6d";
+// String secret = "dcead4a0768dfe0a66774759f64b46e2";
 String serverUrl = "http://192.168.12.1:4242/api";
