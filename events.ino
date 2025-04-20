@@ -2,7 +2,8 @@
 #define LED_LIGHT_PIN   23
 
 #define CAR_ENTRY_THRESHOLD 500
-#define PARK_TIME_THRESHOLD 3000
+#define PARK_TIME_THRESHOLD 4000
+#define EXIT_TIME_THRESHOLD 7000
 
 void connectToWiFi() {
   Serial.print("[wifi] connecting...");
@@ -138,7 +139,7 @@ void handleParking() {
           slot->detected = millis(); continue;
         }
 
-        if (millis() - slot->detected >= PARK_TIME_THRESHOLD) {
+        if (millis() - slot->detected >= EXIT_TIME_THRESHOLD) {
           Serial.print("[parking] leaving slot "); Serial.println(slot->location);
 
           JsonDocument response = postRequest(
