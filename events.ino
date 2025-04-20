@@ -49,8 +49,8 @@ void handleLighting() {
   bool empty = true;
   for (auto slot : slots) {
     if (slot.parked || slot.detected > 0) {
-      Serial.print("[lights] activity in ");
-      Serial.println(slot.location);
+      // Serial.print("[lights] activity in ");
+      // Serial.println(slot.location);
       empty = false; break;
     }
   }
