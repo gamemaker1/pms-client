@@ -1,7 +1,7 @@
 #define ENTRY_IR_SENSOR 34
 #define LED_LIGHT_PIN   23
 
-#define CAR_ENTRY_THRESHOLD 150
+#define CAR_ENTRY_THRESHOLD 500
 #define PARK_TIME_THRESHOLD 3000
 
 void connectToWiFi() {
