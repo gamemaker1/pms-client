@@ -7,7 +7,6 @@
 
 // entry, exit, slots
 #define MODE "entry"
-// #define MODE "exit"
 
 void setup() {
   Serial.begin(9600);

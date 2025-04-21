@@ -1,0 +1,16 @@
+{
+  "mode": "exit",
+  "wifi": {
+    "ssid": "hifi",
+    "password": "password"
+  },
+  "server": {
+    "url": "http://192.168.12.1:4242/api",
+    "secret": "dcead4a0768dfe0a66774759f64b46e2"
+  },
+  "slots": [
+    { "location": "B3", "trig": 14, "echo": 27, "gled": 26, "rled": 25, "threshold": 4 },
+    { "location": "B2", "trig": 32, "echo": 33, "gled": 2,  "rled": 4,  "threshold": 3 },
+    { "location": "B1", "trig": 17, "echo": 18, "gled": 15, "rled": 16, "threshold": 3 }
+  ]
+}
