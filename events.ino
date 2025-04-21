@@ -202,8 +202,8 @@ void handleExit() {
   delay(1); client.stop();
 
   Serial.println("[exit] opening gate for car");
-  openGate(); delay(5000);
+  closeGate(); delay(5000);
 
   Serial.println("[exit] closing gate for car");
-  closeGate();
+  openGate();
 }
